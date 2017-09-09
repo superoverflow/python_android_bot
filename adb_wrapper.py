@@ -25,3 +25,6 @@ if __name__=='__main__':
     FORMAT = "%(asctime)-15s [%(levelname)-6s] %(filename)s:%(lineno)3d  %(message)s"
     logging.basicConfig(format=FORMAT, level=20)
 
+
+if __name__=='__main__':
+    pass

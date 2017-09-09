@@ -139,19 +139,19 @@ if __name__ == '__main__':
 
 
 
-    for i in range(1,1):
-        logging.info("----- test %02d -------" %i )
+    scrn = [ 'screen20170902_145357.png',
+            'screen20170902_145403.png',
+            'screen20170902_145447.png']
 
-        screen = cv2.imread('test_input/char_select/char%02d.png' % i)
-        gen_test_input(screen)
+    for i in scrn:
+        logging.info("----- %s -------" % i)
+        screen = cv2.imread('test_input/char_select_screens/%s' % i)
+        #gen_test_input(screen)
 
         pts = found_char_needs_training(screen)
         [mark_pic(screen, pt, (20,20)) for pt in pts]
 
-        cv2.imwrite("test_output/result%02d.png" % i , screen)
-
-
-
+        cv2.imwrite("test_output/%s" % i , screen)
 
 
     #show_result(screen)

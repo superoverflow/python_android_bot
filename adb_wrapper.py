@@ -1,6 +1,7 @@
-import subprocess
-import logging
 import datetime
+import logging
+import subprocess
+
 
 def check_devices(host, port):
     cmd = ["adb", "devices", "-l"]
@@ -13,9 +14,9 @@ def connect(host,port):
     logging.debug(out)
 
 def screencap(filename = "screencap.png"):
-    cmd = "scripts/adb_screencaps.sh screencaps/%s" % filename
+    cmd = ["scripts/adb_screencaps.sh", "screencaps/%s" % filename]
     logging.debug(cmd)
-    subprocess.check_output(cmd, shell=True)
+    subprocess.check_output(cmd)
 
 def click(pt):
     cmd = ["adb", "shell", "tap", pt[0], pt[1]]

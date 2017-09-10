@@ -1,4 +1,3 @@
-import cv2
 from utils import *
 
 """ just a quick try on opencv"""
@@ -97,7 +96,7 @@ def show_result(screen):
     cv2.waitKey()
 
 
-def found_char_needs_training(screen):
+def find_char_needs_training(screen):
 
     result = []
     card_refs = find_char_card(screen)
@@ -148,7 +147,7 @@ if __name__ == '__main__':
         screen = cv2.imread('test_input/char_select_screens/%s' % i)
         #gen_test_input(screen)
 
-        pts = found_char_needs_training(screen)
+        pts = find_char_needs_training(screen)
         [mark_pic(screen, pt, (20,20)) for pt in pts]
 
         cv2.imwrite("test_output/%s" % i , screen)

@@ -1,5 +1,6 @@
 import subprocess
 import logging
+import datetime
 
 def check_devices(host, port):
     cmd = ["adb", "devices", "-l"]
@@ -11,9 +12,8 @@ def connect(host,port):
     out = subprocess.check_output(cmd)
     logging.debug(out)
 
-def screencap(filename = "screencaps/screencap2.png"):
-    #cmd = """adb shell screencap -p | perl -pe 's/\\x0D\\x0A/\\x0A/g' > %s""" % filename
-    cmd = "scripts/adb_screencaps.sh %s" % filename
+def screencap(filename = "screencap.png"):
+    cmd = "scripts/adb_screencaps.sh screencaps/%s" % filename
     logging.debug(cmd)
     subprocess.check_output(cmd, shell=True)
 
@@ -39,4 +39,5 @@ if __name__=='__main__':
     check_devices(host, port)
 
     logging.info("taking screencap")
-    screencap()
+    now = datetime.datetime.now()
+    screencap(now.strftime("%y%m%d_%H%M%S")+".png")

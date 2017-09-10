@@ -14,7 +14,7 @@ def connect(host,port):
     logging.debug(out)
 
 def screencap(filename = "screencap.png"):
-    cmd = ["scripts/adb_screencaps.sh screencaps/%s" % filename]
+    cmd = "scripts/adb_screencaps.sh screencaps/%s" % filename
     logging.debug(cmd)
     subprocess.check_output(cmd, shell=True)
 
@@ -22,10 +22,13 @@ def click(pt):
     cmd = ["adb", "shell", "tap", pt[0], pt[1]]
     subprocess.check_output(cmd)
 
-def swipe(start, end):
-    cmd = ["adb", "shell", start[0], start[1], end[0], end[1]]
-    subprocess.check_output(cmd)
 
+def swipe(start, end, time=1500):
+    cmd = ["adb", "shell", "input", "swipe", str(start[0]), str(start[1]),
+           str(end[0]), str(end[1]), str(time)]
+    logging.debug(cmd)
+    out = subprocess.check_output(cmd)
+    logging.debug(out)
 
 if __name__=='__main__':
     host = "192.168.0.10"

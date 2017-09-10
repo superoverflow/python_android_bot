@@ -2,9 +2,9 @@ import logging
 
 import cv2
 
-from adb_wrapper import screencap
+from adb_wrapper import screencap, swipe
+from char_selector import GRID_TOP_LEFT
 from char_selector import find_char_card
-
 
 def scroll_to_next_screen():
     pass
@@ -18,7 +18,7 @@ def is_bottom_char_grid():
     return True
 
 
-def get_screen()
+def get_screen():
     file = "char_screen.png"
     screencap(file)
     screen = cv2.imread("screencaps/%s" % file)
@@ -30,8 +30,9 @@ if __name__ == '__main__':
 
     screen = get_screen()
 
-    while not is_bottom_char_grid():
-        logging.debug("start looking char from screenshots")
-        pts = find_char_card(screen)
+    logging.debug("start looking char from screenshots")
+    pts = find_char_card(screen)
+    ref = pts[-1]
 
-        logging.debug("go to next screen")
+    logging.debug("go to next screen")
+    swipe(ref, GRID_TOP_LEFT)

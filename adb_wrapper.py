@@ -14,9 +14,9 @@ def connect(host,port):
     logging.debug(out)
 
 def screencap(filename = "screencap.png"):
-    cmd = ["scripts/adb_screencaps.sh", "screencaps/%s" % filename]
+    cmd = ["scripts/adb_screencaps.sh screencaps/%s" % filename]
     logging.debug(cmd)
-    subprocess.check_output(cmd)
+    subprocess.check_output(cmd, shell=True)
 
 def click(pt):
     cmd = ["adb", "shell", "tap", pt[0], pt[1]]

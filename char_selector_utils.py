@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 import cv2
@@ -36,3 +37,5 @@ if __name__ == '__main__':
 
     logging.debug("go to next screen")
     swipe(ref, GRID_TOP_LEFT)
+    now = datetime.datetime.now()
+    screencap(now.strftime("%y%m%d_%H%M%S") + ".png")

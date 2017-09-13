@@ -117,7 +117,7 @@ def gen_test_input(screen):
     card_refs = find_char_card(screen)
 
     for (cnt, pt) in enumerate(card_refs):
-        cv2.imwrite("test_input/char_card_%05d_%03d.png" % (random_key,cnt),
+        cv2.imwrite("test_input/char_cards/%05d_%03d.png" % (random_key, cnt),
                     get_char_card(screen, pt))
 
 
@@ -125,6 +125,7 @@ if __name__ == '__main__':
     FORMAT = "%(asctime)-15s [%(levelname)-6s] %(filename)s:%(lineno)3d  %(message)s"
     logging.basicConfig(format=FORMAT, level=20)
 
+    """
     img = [ 'char_card_07682_002.png',
             'char_card_06762_003.png',
             'char_card_05237_005.png'
@@ -135,12 +136,27 @@ if __name__ == '__main__':
 
         logging.info(is_char_four_stars(card))
         logging.info(is_char_lv_40(card))
+    """
 
-
-
-    scrn = [ 'screen20170902_145357.png',
-            'screen20170902_145403.png',
-            'screen20170902_145447.png']
+    scrn = ['170913_195341.png',
+            '170913_195359.png',
+            '170913_195408.png',
+            '170913_195416.png',
+            '170913_195424.png',
+            '170913_195431.png',
+            '170913_195438.png',
+            '170913_195445.png',
+            '170913_195452.png',
+            '170913_195459.png',
+            '170913_195506.png',
+            '170913_195513.png',
+            '170913_195519.png',
+            '170913_195526.png',
+            '170913_195533.png',
+            '170913_195540.png',
+            '170913_195546.png',
+            '170913_195554.png',
+            '170913_195617.png']
 
     for i in scrn:
         logging.info("----- %s -------" % i)
@@ -160,3 +176,4 @@ if __name__ == '__main__':
 
     # mark char cards
     #cv2.imwrite("result.png", screen)
+

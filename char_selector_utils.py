@@ -7,6 +7,7 @@ from adb_wrapper import screencap, swipe
 from char_selector import GRID_TOP_LEFT
 from char_selector import find_char_card
 
+
 def scroll_to_next_screen():
     pass
 
@@ -30,6 +31,8 @@ if __name__ == '__main__':
     logging.basicConfig(format=FORMAT, level=10)
 
     screen = get_screen()
+    now = datetime.datetime.now()
+    screencap(now.strftime("%y%m%d_%H%M%S") + ".png")
 
     logging.debug("start looking char from screenshots")
     pts = find_char_card(screen)
@@ -37,5 +40,3 @@ if __name__ == '__main__':
 
     logging.debug("go to next screen")
     swipe(ref, GRID_TOP_LEFT)
-    now = datetime.datetime.now()
-    screencap(now.strftime("%y%m%d_%H%M%S") + ".png")

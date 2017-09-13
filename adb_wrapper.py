@@ -36,8 +36,8 @@ if __name__=='__main__':
     FORMAT = "%(asctime)-15s [%(levelname)-6s] %(filename)s:%(lineno)3d  %(message)s"
     logging.basicConfig(format=FORMAT, level=10)
 
-    #logging.info("connecting to a android emulator")
-    #connect(host, port)
+    logging.info("connecting to a android emulator")
+    connect(host, port)
 
     logging.info("listing devices")
     check_devices(host, port)

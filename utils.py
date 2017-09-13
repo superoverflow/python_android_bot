@@ -1,6 +1,8 @@
+import logging
+
 import cv2
 import numpy as np
-import logging
+
 
 def find_pic(large, small, threshold):
     method = cv2.TM_CCOEFF_NORMED
@@ -31,3 +33,10 @@ def mark_pic(large, pt, size):
     color = (0, 0, 255)
     thickness = 1
     cv2.rectangle(large, pt, (pt[0] + w, pt[1] + h), color, thickness)
+
+
+def is_found(pts):
+    if len(pts) > 0:
+        return True
+    else:
+        return False

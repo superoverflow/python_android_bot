@@ -1,6 +1,6 @@
 from utils import *
 
-""" just a quick try on opencv"""
+""" just a quick try on opencv """
 
 GRID_TOP_LEFT = (837, 57)
 GRID_BOTTOM_RIGHT = (1257, 545)
@@ -125,7 +125,6 @@ if __name__ == '__main__':
     FORMAT = "%(asctime)-15s [%(levelname)-6s] %(filename)s:%(lineno)3d  %(message)s"
     logging.basicConfig(format=FORMAT, level=20)
 
-    """
     img = [ 'char_card_07682_002.png',
             'char_card_06762_003.png',
             'char_card_05237_005.png'
@@ -136,7 +135,6 @@ if __name__ == '__main__':
 
         logging.info(is_char_four_stars(card))
         logging.info(is_char_lv_40(card))
-    """
 
     scrn = ['170913_195341.png',
             '170913_195359.png',

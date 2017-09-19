@@ -6,6 +6,9 @@ from charcard import CharCard
 
 TEST_DATA_DIR = "test_input/char_cards/"
 
+"""This test script generates test cases from meta.txt
+
+"""
 
 def read_meta():
     metafile = path.join(TEST_DATA_DIR, "meta.txt")
@@ -42,7 +45,7 @@ if __name__ == '__main__':
         test_func_star = make_test_func(k, char_stars[k] == 4, v.is_four_stars())
         test_func_lv = make_test_func(k, char_lv[k] == 40, v.is_lv_40())
         test_name = k.strip('.png')
-        setattr(CharCardTest, 'test_stars_{0}'.format(test_name), test_func_star)
-        setattr(CharCardTest, 'test_lv_{0}'.format(test_name), test_func_lv)
+        setattr(CharCardTest, 'test_{0}_stars'.format(test_name), test_func_star)
+        setattr(CharCardTest, 'test_{0}_lv'.format(test_name), test_func_lv)
 
     unittest.main()

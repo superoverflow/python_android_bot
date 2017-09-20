@@ -3,6 +3,7 @@ import os
 import sys
 
 import cv2
+import numpy as np
 
 test_input_dir = 'test_input/char_cards/'
 test_files = [f for f in os.listdir(test_input_dir) if f.endswith(".png")]
@@ -33,12 +34,13 @@ def capture_keys(keys):
     elif key == 13:  # Enter
         logging.debug(keys)
         return keys
-    else:
+    elif key in range(48, 58):  # 0-9
         key = key - ord("0")
         keys.append(key)
         logging.debug(keys)
         return capture_keys(keys)
-
+    else:
+        logging.debug("unexpected key pressed")
 
 for file in test_files:
     FORMAT = "%(asctime)-15s [%(levelname)-6s] %(filename)s:%(lineno)3d  %(message)s"
@@ -56,9 +58,10 @@ for file in test_files:
                          if cv2.contourArea(cnt) > 15 and
                          cnt_height(cnt) > 14]
 
-    cv2.drawContours(img, contours_filtered, -1, (0, 255, 0), 1)
+    mask = np.zeros(size, np.uint8)
+    cv2.drawContours(mask, contours_filtered, -1, (255, 255, 255), 1)
 
-    cv2.imshow(file, img)
+    cv2.imshow(file, mask)
     keys_captured = capture_keys([])
     lv = keys_to_num(keys_captured)
     print(file, lv)

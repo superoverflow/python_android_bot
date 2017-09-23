@@ -44,7 +44,7 @@ def capture_keys(keys):
 
 for file in test_files:
     FORMAT = "%(asctime)-15s [%(levelname)-6s] %(filename)s:%(lineno)3d  %(message)s"
-    logging.basicConfig(format=FORMAT, level=10)
+    logging.basicConfig(format=FORMAT, level=20)
 
     raw = cv2.imread(test_input_dir + file)
     img = raw[base[0]:base[0] + size[0], base[1]:base[1] + size[1]]
@@ -53,15 +53,23 @@ for file in test_files:
     ret, thresh = cv2.threshold(imgray, 127, 255, 0)
     contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-    # we want to have contour large and taill enough
+    # we want to have contour large and tail enough
     contours_filtered = [cnt for cnt in contours
                          if cv2.contourArea(cnt) > 15 and
                          cnt_height(cnt) > 14]
 
     mask = np.zeros(size, np.uint8)
-    cv2.drawContours(mask, contours_filtered, -1, (255, 255, 255), 1)
 
+    for (i, cont) in enumerate(contours_filtered):
+        M = cv2.moments(cont)
+        cx = int(M['m10'] / M['m00'])
+        cy = int(M['m01'] / M['m00'])
+        logging.info("%d :(cx,cy) = (%d,%d) " % (i, cx, cy))
+        cv2.circle(mask, (cx, cy), 1, 255)
+
+
+    cv2.drawContours(mask, contours_filtered, -1, (255, 255, 255), 1)
     cv2.imshow(file, mask)
     keys_captured = capture_keys([])
     lv = keys_to_num(keys_captured)
-    print(file, lv)
+    # print(file, lv)

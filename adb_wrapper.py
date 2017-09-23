@@ -19,7 +19,7 @@ def screencap(filename = "screencap.png"):
     subprocess.check_output(cmd, shell=True)
 
 def click(pt):
-    cmd = ["adb", "shell", "tap", pt[0], pt[1]]
+    cmd = ["adb", "shell", "input", "tap", pt[0], pt[1]]
     subprocess.check_output(cmd)
 
 
